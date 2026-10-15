@@ -1,0 +1,955 @@
+﻿import { SupportedLanguage, EditorFile } from "../types/compiler";
+
+export interface LanguageOption {
+  value: SupportedLanguage;
+  label: string;
+  monacoId: string;
+  boilerplate: string;
+}
+
+export const languageOptions: LanguageOption[] = [
+  {
+    value: "python",
+    label: "Python 3",
+    monacoId: "python",
+    boilerplate: `print("Hello, World!")\n`,
+  },
+  {
+    value: "javascript",
+    label: "JavaScript",
+    monacoId: "javascript",
+    boilerplate: `console.log("Hello, World!");\n`,
+  },
+  {
+    value: "nodejs",
+    label: "NodeJS",
+    monacoId: "javascript",
+    boilerplate: `console.log("Hello, World!");\n`,
+  },
+  {
+    value: "cpp",
+    label: "C++",
+    monacoId: "cpp",
+    boilerplate: `#include <iostream>\n\nint main() {\n    std::cout << "Hello, World!" << std::endl;\n    return 0;\n}\n`,
+  },
+  {
+    value: "c",
+    label: "C",
+    monacoId: "c",
+    boilerplate: `#include <stdio.h>\n\nint main() {\n    printf("Hello, World!\\n");\n    return 0;\n}\n`,
+  },
+  {
+    value: "java",
+    label: "Java",
+    monacoId: "java",
+    boilerplate: `public class Main {\n    public static void main(String[] args) {\n        System.out.println("Hello, World!");\n    }\n}\n`,
+  },
+  {
+    value: "php",
+    label: "PHP",
+    monacoId: "php",
+    boilerplate: `<?php\necho "Hello, World!\\n";\n`,
+  },
+  {
+    value: "csharp",
+    label: "C#",
+    monacoId: "csharp",
+    boilerplate: `using System;\n\nclass Program {\n    static void Main() {\n        Console.WriteLine("Hello, World!");\n    }\n}\n`,
+  },
+  {
+    value: "ruby",
+    label: "Ruby",
+    monacoId: "ruby",
+    boilerplate: `puts "Hello, World!"\n`,
+  },
+  {
+    value: "lua",
+    label: "Lua",
+    monacoId: "lua",
+    boilerplate: `print("Hello, World!")\n`,
+  },
+  {
+    value: "groovy",
+    label: "Groovy",
+    monacoId: "plaintext",
+    boilerplate: `println "Hello, World!"\n`,
+  },
+  {
+    value: "kotlin",
+    label: "Kotlin",
+    monacoId: "kotlin",
+    boilerplate: `fun main() {\n    println("Hello, World!")\n}\n`,
+  },
+  {
+    value: "dart",
+    label: "Dart",
+    monacoId: "dart",
+    boilerplate: `void main() {\n  print("Hello, World!");\n}\n`,
+  },
+
+  {
+    value: "go",
+    label: "Go",
+    monacoId: "go",
+    boilerplate: `package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello, World!")
+}
+`,
+  },
+
+  {
+    value: "rust",
+    label: "Rust",
+    monacoId: "rust",
+    boilerplate: `fn main() {
+    println!("Hello, World!");
+}
+`,
+  },
+
+  {
+    value: "typescript",
+    label: "TypeScript",
+    monacoId: "typescript",
+    boilerplate: `const message: string = "Hello, World!";
+
+console.log(message);
+`,
+  },
+  {
+    value: "swift",
+    label: "Swift",
+    monacoId: "swift",
+    boilerplate: `import Foundation
+
+print("Hello, World!")
+`,
+  },
+
+  {
+    value: "r",
+    label: "R",
+    monacoId: "r",
+    boilerplate: `x <- c(10, 20, 30, 40, 50)
+
+cat("Sum:", sum(x), "\\n")
+cat("Average:", mean(x), "\\n")
+`,
+  },
+  {
+    value: "scala",
+    label: "Scala",
+    monacoId: "scala",
+    boilerplate: `object Main {
+  def main(args: Array[String]): Unit = {
+    println("Hello, World!")
+  }
+}
+`,
+  },
+  {
+    value: "haskell",
+    label: "Haskell",
+    monacoId: "haskell",
+    boilerplate: `main :: IO ()
+main = putStrLn "Hello, World!"
+`,
+  },
+
+  {
+    value: "julia",
+    label: "Julia",
+    monacoId: "julia",
+    boilerplate: `numbers = [10, 20, 30, 40, 50]
+
+println("Sum: ", sum(numbers))
+println("Average: ", sum(numbers) / length(numbers))
+`,
+  },
+
+  {
+    value: "elixir",
+    label: "Elixir",
+    monacoId: "elixir",
+    boilerplate: `numbers = [10, 20, 30, 40, 50]
+
+IO.puts("Numbers: #{inspect(numbers)}")
+IO.puts("Sum: #{Enum.sum(numbers)}")
+IO.puts("Maximum: #{Enum.max(numbers)}")
+IO.puts("Minimum: #{Enum.min(numbers)}")
+`,
+  },
+
+  {
+    value: "erlang",
+    label: "Erlang",
+    monacoId: "erlang",
+    boilerplate: `-module(main).
+-export([main/0]).
+
+main() ->
+    Numbers = [10, 20, 30, 40, 50],
+    io:format("Numbers: ~p~n", [Numbers]),
+    io:format("Sum: ~p~n", [lists:sum(Numbers)]),
+    io:format("Maximum: ~p~n", [lists:max(Numbers)]),
+    io:format("Minimum: ~p~n", [lists:min(Numbers)]).
+`,
+  },
+
+  {
+    value: "perl",
+    label: "Perl",
+    monacoId: "perl",
+    boilerplate: `use strict;
+use warnings;
+
+my @numbers = (10, 20, 30, 40, 50);
+
+my $sum = 0;
+$sum += $_ for @numbers;
+
+my $average = $sum / scalar(@numbers);
+
+print "Numbers: @numbers\\n";
+print "Sum: $sum\\n";
+print "Average: $average\\n";
+print "Maximum: ", (sort { $b <=> $a } @numbers)[0], "\\n";
+print "Minimum: ", (sort { $a <=> $b } @numbers)[0], "\\n";
+`,
+  },
+  {
+    value: "fortran",
+    label: "Fortran",
+    monacoId: "plaintext",
+    boilerplate: `program main
+    implicit none
+
+    integer :: numbers(5)
+    integer :: i
+    integer :: total
+    real :: average
+
+    numbers = (/10, 20, 30, 40, 50/)
+    total = 0
+
+    print *, "Numbers:"
+
+    do i = 1, 5
+        print *, numbers(i)
+        total = total + numbers(i)
+    end do
+
+    average = real(total) / 5.0
+
+    print *, "Total:", total
+    print *, "Average:", average
+    print *, "Maximum:", maxval(numbers)
+    print *, "Minimum:", minval(numbers)
+
+end program main
+`,
+  },
+
+  {
+    value: "fsharp",
+    label: "F#",
+    monacoId: "plaintext",
+    boilerplate: `let numbers = [10; 20; 30; 40; 50]
+
+let total = List.sum numbers
+let average = float total / float numbers.Length
+let highest = List.max numbers
+let lowest = List.min numbers
+
+printfn "Numbers: %A" numbers
+printfn "Total: %d" total
+printfn "Average: %.1f" average
+printfn "Highest: %d" highest
+printfn "Lowest: %d" lowest
+`,
+  },
+
+  {
+    value: "ocaml",
+    label: "OCaml",
+    monacoId: "plaintext",
+    boilerplate: `let numbers = [10; 20; 30; 40; 50]
+
+let total = List.fold_left ( + ) 0 numbers
+let average = float total /. float (List.length numbers)
+let highest = List.fold_left max min_int numbers
+let lowest = List.fold_left min max_int numbers
+
+let () =
+  Printf.printf "Numbers: %s\\n"
+    (String.concat "; " (List.map string_of_int numbers));
+  Printf.printf "Total: %d\\n" total;
+  Printf.printf "Average: %.1f\\n" average;
+  Printf.printf "Highest: %d\\n" highest;
+  Printf.printf "Lowest: %d\\n" lowest
+`,
+  },
+
+  {
+    value: "nim",
+    label: "Nim",
+    monacoId: "plaintext",
+    boilerplate: `import std/[strformat, sequtils]
+
+let numbers = @[10, 20, 30, 40, 50]
+
+let total = numbers.foldl(a + b)
+let average = float(total) / float(numbers.len)
+let highest = numbers.max
+let lowest = numbers.min
+
+echo fmt"Numbers: {numbers}"
+echo fmt"Total: {total}"
+echo fmt"Average: {average:.1f}"
+echo fmt"Highest: {highest}"
+echo fmt"Lowest: {lowest}"
+`,
+  },
+
+  {
+    value: "crystal",
+    label: "Crystal",
+    monacoId: "ruby",
+    boilerplate: `numbers = [10, 20, 30, 40, 50]
+
+total = numbers.sum
+average = total.to_f / numbers.size
+
+puts "Numbers: #{numbers}"
+puts "Total: #{total}"
+puts "Average: #{average}"
+puts "Highest: #{numbers.max}"
+puts "Lowest: #{numbers.min}"
+`,
+  },
+  {
+    value: "plsql",
+    label: "PL/SQL",
+    monacoId: "sql",
+    boilerplate: `DECLARE
+    v_num1 NUMBER := 10;
+    v_num2 NUMBER := 20;
+    v_sum NUMBER;
+BEGIN
+    v_sum := v_num1 + v_num2;
+
+    DBMS_OUTPUT.PUT_LINE('Number 1: ' || v_num1);
+    DBMS_OUTPUT.PUT_LINE('Number 2: ' || v_num2);
+    DBMS_OUTPUT.PUT_LINE('Sum: ' || v_sum);
+  END;
+/`,
+  },
+  {
+    value: "assembly",
+    label: "Assembly",
+    monacoId: "plaintext",
+    boilerplate: `section .data\n    msg db "Hello, World!", 10\n    len equ $ - msg\n\nsection .text\n    global _start\n\n_start:\n    mov rax, 1\n    mov rdi, 1\n    mov rsi, msg\n    mov rdx, len\n    syscall\n\n    mov rax, 60\n    xor rdi, rdi\n    syscall\n`,
+  },
+  {
+    value: "html",
+    label: "HTML, CSS, JS",
+    monacoId: "html",
+    boilerplate: "", // unused â€” multi-file mode, see getMultiFileBoilerplate below
+  },
+  {
+    value: "react",
+    label: "React",
+    monacoId: "javascript",
+    boilerplate: "", // unused â€” multi-file mode, see getMultiFileBoilerplate below
+  },
+  {
+    value: "mysql",
+    label: "MySQL",
+    monacoId: "sql",
+    boilerplate: `CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT
+  );
+INSERT INTO students (name, age) VALUES ('Alice', 25), ('Bob', 30);
+SELECT * FROM students;`,
+  },
+  {
+    value: "mongodb",
+    label: "MongoDB",
+    monacoId: "javascript",
+    boilerplate: `db.students.insertMany([
+  { name: "Alice", age: 25 },
+  { name: "Bob", age: 30 }
+]);
+db.students.find().pretty();`,
+  },
+  {
+    value: "postgresql",
+    label: "PostgreSQL",
+    monacoId: "sql",
+    boilerplate: `CREATE TABLE students (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT
+  );
+  INSERT INTO students (name, age) VALUES ('Alice', 25), ('Bob', 30);
+  SELECT * FROM students;`,
+  },
+
+  {
+    value: "bash",
+    label: "Bash",
+    monacoId: "shell",
+    boilerplate: `echo "Hello, World!"\n`,
+  },
+  {
+    value: "prolog",
+    label: "Prolog",
+    monacoId: "plaintext",
+    boilerplate: `main :- writeln('Hello, World!').\n`,
+  },
+  {
+    value: "racket",
+    label: "Racket",
+    monacoId: "plaintext",
+    boilerplate: `#lang racket\n(displayln "Hello, World!")\n`,
+  },
+  {
+    value: "cobol",
+    label: "COBOL",
+    monacoId: "plaintext",
+    boilerplate: `       IDENTIFICATION DIVISION.
+       PROGRAM-ID. MAIN.
+       PROCEDURE DIVISION.
+           DISPLAY "Hello from COBOL!".
+           STOP RUN.
+`,
+  },
+  {
+    value: "zig",
+    label: "Zig",
+    monacoId: "rust",
+    boilerplate: `const std = @import("std");
+
+pub fn main() void {
+    std.debug.print("Hello from Zig!\\n", .{});
+}
+`,
+  },
+  {
+    value: "powershell",
+    label: "PowerShell",
+    monacoId: "powershell",
+    boilerplate: `Write-Output "Hello from PowerShell!"
+`,
+  },];
+
+export function getLanguageOption(value: string): LanguageOption {
+  const found = languageOptions.find((opt) => opt.value === value);
+  return found ?? languageOptions[0];
+}
+
+/** Languages that use the multi-file editor + live preview instead of stdin/stdout. */
+export function isMultiFileLanguage(lang: SupportedLanguage): boolean {
+  return lang === "html" || lang === "react";
+}
+
+/** Default index.html / styles.css / script.js workspace shown when "html" is selected. */
+function getHtmlBoilerplateFiles(): EditorFile[] {
+  return [
+    {
+      id: "index.html",
+      name: "index.html",
+      monacoId: "html",
+      content: `<!DOCTYPE html>\n<html>\n  <head>\n    <title>Hello, World!</title>\n    <link rel="stylesheet" href="styles.css" />\n  </head>\n  <body>\n    <h1 class="title">Hello World!</h1>\n    <p id="currentTime"></p>\n    <script src="script.js"></script>\n  </body>\n</html>\n`,
+    },
+    {
+      id: "styles.css",
+      name: "styles.css",
+      monacoId: "css",
+      content: `.title {\n  font-family: Georgia, serif;\n  color: #4361ee;\n}\n`,
+    },
+    {
+      id: "script.js",
+      name: "script.js",
+      monacoId: "javascript",
+      content: `document.getElementById("currentTime").textContent = new Date().toUTCString();\n`,
+    },
+  ];
+}
+
+function getReactBoilerplateFiles(): EditorFile[] {
+  return [
+    {
+      id: "App.jsx",
+      name: "App.jsx",
+      monacoId: "javascript",
+      content: `import React, { useState } from "react";
+import "./styles.css";
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div className="card">
+      <h1>Hello, World!</h1>
+
+      <p>Welcome to React Compiler</p>
+
+      <button onClick={() => setCount(count + 1)}>
+        Clicked {count} times
+      </button>
+    </div>
+  );
+}
+
+export default App;
+`,
+    },
+
+    {
+      id: "index.jsx",
+      name: "index.jsx",
+      monacoId: "javascript",
+      content: `import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+
+ReactDOM.createRoot(
+  document.getElementById("root")
+).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+`,
+    },
+
+    {
+      id: "index.html",
+      name: "index.html",
+      monacoId: "html",
+      content: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>React App</title>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+</html>
+`,
+    },
+
+    {
+      id: "styles.css",
+      name: "styles.css",
+      monacoId: "css",
+      content: `body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f5f5f5;
+}
+
+.card {
+  text-align: center;
+  padding: 40px;
+}
+
+button {
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+`,
+    },
+
+    {
+      id: "package.json",
+      name: "package.json",
+      monacoId: "json",
+      content: `{
+  "name": "react-app",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
+`,
+    },
+  ];
+}
+
+/** Returns the starter files for any multi-file language. */
+export function getMultiFileBoilerplate(lang: SupportedLanguage): EditorFile[] {
+  if (lang === "react") return getReactBoilerplateFiles();
+  return getHtmlBoilerplateFiles();
+}
+
+export interface HomeTile {
+  name: string;
+  slug: string;
+  category: "popular" | "programming" | "web" | "databases";
+  bg: string;
+  fg: string;
+  short: string; // 1-3 letter / symbol badge text
+}
+
+export const homeTiles: HomeTile[] = [
+  {
+    name: "HTML",
+    slug: "html",
+    category: "web",
+    bg: "#fdece7",
+    fg: "#e34c26",
+    short: "</>",
+  },
+  {
+    name: "Python",
+    slug: "python",
+    category: "popular",
+    bg: "#eaf3fb",
+    fg: "#3776ab",
+    short: "Py",
+  },
+  {
+    name: "JavaScript",
+    slug: "javascript",
+    category: "web",
+    bg: "#fef6d8",
+    fg: "#c9a227",
+    short: "JS",
+  },
+  {
+    name: "Java",
+    slug: "java",
+    category: "popular",
+    bg: "#fdeee2",
+    fg: "#e76f00",
+    short: "J",
+  },
+  {
+    name: "MySQL",
+    slug: "mysql",
+    category: "databases",
+    bg: "#eaf5fb",
+    fg: "#0e6494",
+    short: "SQL",
+  },
+  {
+    name: "C",
+    slug: "c",
+    category: "programming",
+    bg: "#eaf1fb",
+    fg: "#3b5b92",
+    short: "C",
+  },
+  {
+    name: "C++",
+    slug: "cpp",
+    category: "programming",
+    bg: "#eaf1fb",
+    fg: "#3b5b92",
+    short: "C++",
+  },
+  {
+    name: "PHP",
+    slug: "php",
+    category: "web",
+    bg: "#efeafc",
+    fg: "#6b4fbb",
+    short: "php",
+  },
+  {
+    name: "C#",
+    slug: "csharp",
+    category: "programming",
+    bg: "#efeafc",
+    fg: "#6b4fbb",
+    short: "C#",
+  },
+  {
+    name: "Assembly",
+    slug: "assembly",
+    category: "programming",
+    bg: "#eef1fe",
+    fg: "#4361ee",
+    short: "ASM",
+  },
+  {
+    name: "Lua",
+    slug: "lua",
+    category: "programming",
+    bg: "#eaf1fb",
+    fg: "#2843a1",
+    short: "Lua",
+  },
+  {
+    name: "PL/SQL",
+    slug: "plsql",
+    category: "databases",
+    bg: "#fdece7",
+    fg: "#e0342b",
+    short: "OR",
+  },
+  {
+    name: "NodeJS",
+    slug: "nodejs",
+    category: "popular",
+    bg: "#e9f6ea",
+    fg: "#3c873a",
+    short: "JS",
+  },
+  {
+    name: "MongoDB",
+    slug: "mongodb",
+    category: "databases",
+    bg: "#e9f6ea",
+    fg: "#13aa52",
+    short: "Mo",
+  },
+  {
+    name: "Groovy",
+    slug: "groovy",
+    category: "programming",
+    bg: "#eaf1fb",
+    fg: "#4298b8",
+    short: "Gr",
+  },
+  {
+    name: "Kotlin",
+    slug: "kotlin",
+    category: "programming",
+    bg: "#f4f4f4",
+    fg: "#7952b3",
+    short: "Kt",
+  },
+  {
+    name: "Dart",
+    slug: "dart",
+    category: "programming",
+    bg: "#eaf1fb",
+    fg: "#0175c2",
+    short: "D",
+  },
+  {
+    name: "Go",
+    slug: "go",
+    category: "programming",
+    bg: "#eaf7fb",
+    fg: "#00add8",
+    short: "Go",
+  },
+
+  {
+    name: "Rust",
+    slug: "rust",
+    category: "programming",
+    bg: "#f6eee9",
+    fg: "#ce422b",
+    short: "Rs",
+  },
+
+  {
+    name: "TypeScript",
+    slug: "typescript",
+    category: "programming",
+    bg: "#eaf1fb",
+    fg: "#3178c6",
+    short: "TS",
+  },
+  {
+    name: "Swift",
+    slug: "swift",
+    category: "programming",
+    bg: "#fff0eb",
+    fg: "#f05138",
+    short: "Sw",
+  },
+  {
+    name: "Scala",
+    slug: "scala",
+    category: "programming",
+    bg: "#f5e9e9",
+    fg: "#dc322f",
+    short: "Sc",
+  },
+  {
+    name: "R",
+    slug: "r",
+    category: "programming",
+    bg: "#e8f4ff",
+    fg: "#276dc3",
+    short: "R",
+  },
+  {
+    name: "Haskell",
+    slug: "haskell",
+    category: "programming",
+    bg: "#f0e8ff",
+    fg: "#5e5086",
+    short: "Hs",
+  },
+  {
+    name: "Julia",
+    slug: "julia",
+    category: "programming",
+    bg: "#f2e8f5",
+    fg: "#9558b2",
+    short: "Jl",
+  },
+  {
+    name: "Elixir",
+    slug: "elixir",
+    category: "programming",
+    bg: "#f7e8f1",
+    fg: "#6e4a7e",
+    short: "Ex",
+  },
+  {
+    name: "Erlang",
+    slug: "erlang",
+    category: "programming",
+    bg: "#f9e5e8",
+    fg: "#a90533",
+    short: "Er",
+  },
+
+  {
+    name: "Perl",
+    slug: "perl",
+    category: "programming",
+    bg: "#e8e8f5",
+    fg: "#39457e",
+    short: "Pl",
+  },
+
+  {
+    name: "Fortran",
+    slug: "fortran",
+    category: "programming",
+    bg: "#eee8ff",
+    fg: "#734f96",
+    short: "Ft",
+  },
+  {
+    name: "F#",
+    slug: "fsharp",
+    category: "programming",
+    bg: "#f5e8ef",
+    fg: "#378bba",
+    short: "F#",
+  },
+
+  {
+    name: "OCaml",
+    slug: "ocaml",
+    category: "programming",
+    bg: "#fff0e6",
+    fg: "#ec6813",
+    short: "OC",
+  },
+  {
+    name: "Nim",
+    slug: "nim",
+    category: "programming",
+    bg: "#fff0e8",
+    fg: "#ffc200",
+    short: "Nm",
+  },
+  {
+    name: "Crystal",
+    slug: "crystal",
+    category: "programming",
+    bg: "#e8f4ff",
+    fg: "#2459a9",
+    short: "Cr",
+  },
+  {
+    name: "React",
+    slug: "react",
+    category: "web",
+    bg: "#eaf6fd",
+    fg: "#149eca",
+    short: "âš›",
+  },
+  {
+    name: "PostgreSQL",
+    slug: "postgresql",
+    category: "databases",
+    bg: "#eaf1fb",
+    fg: "#336791",
+    short: "Pg",
+  },
+
+  {
+    name: "Ruby",
+    slug: "ruby",
+    category: "popular",
+    bg: "#fdeaea",
+    fg: "#cc342d",
+    short: "Ru",
+  },
+
+  {
+    name: "Bash",
+    slug: "bash",
+    category: "programming",
+    bg: "#e9e9e9",
+    fg: "#333333",
+    short: "Sh",
+  },
+  {
+    name: "Prolog",
+    slug: "prolog",
+    category: "programming",
+    bg: "#fce8e6",
+    fg: "#b3261e",
+    short: "Pr",
+  },
+  {
+    name: "Racket",
+    slug: "racket",
+    category: "programming",
+    bg: "#fbe9ee",
+    fg: "#9c2457",
+    short: "Ra",
+  },
+  {
+    name: "COBOL",
+    slug: "cobol",
+    category: "programming",
+    bg: "#e8eef9",
+    fg: "#254a87",
+    short: "Co",
+  },
+  {
+    name: "Zig",
+    slug: "zig",
+    category: "programming",
+    bg: "#fff0df",
+    fg: "#c66a16",
+    short: "Zg",
+  },
+  {
+    name: "PowerShell",
+    slug: "powershell",
+    category: "programming",
+    bg: "#e6efff",
+    fg: "#2456a6",
+    short: "PS",
+  },];

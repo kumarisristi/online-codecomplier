@@ -1,0 +1,66 @@
+﻿export type SupportedLanguage =
+  | "python"
+  | "javascript"
+  | "nodejs"
+  | "cpp"
+  | "c"
+  | "java"
+  | "php"
+  | "csharp"
+  | "ruby"
+  | "lua"
+  | "groovy"
+  | "kotlin"
+  | "assembly"
+  | "plsql"
+  | "mysql"
+  | "mongodb"
+  | "postgresql"
+  | "tkinter"
+  | "dart"
+  | "go"
+  | "rust"
+  | "typescript"
+  | "swift"
+  | "scala"
+  | "r"
+  | "haskell"
+  | "julia"
+  | "elixir"
+  | "erlang"
+  | "perl"
+  | "fortran"
+  | "fsharp"
+  | "ocaml"
+  | "nim"
+  | "html"
+  | "react"
+  | "crystal"
+  | "racket"
+  | "prolog"
+  | "bash"
+  | "cobol"
+  | "zig"
+  | "powershell";
+
+export interface EditorFile {
+  id: string;
+  name: string;
+  monacoId: string;
+  content: string;
+}
+
+export interface RunPayload {
+  language: SupportedLanguage;
+  code: string;
+  input?: string;
+}
+
+export interface RunResult {
+  stdout: string;
+  stderr: string;
+  exitCode: number | null;
+  durationMs: number;
+  timedOut: boolean;
+}
+

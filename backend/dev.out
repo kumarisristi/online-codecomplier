@@ -1,0 +1,56 @@
+
+> online-compiler-backend@1.0.0 dev
+> nodemon --watch src -e ts --exec ts-node src/server.ts
+
+[33m[nodemon] 3.1.14[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching path(s): src\**\*[39m
+[33m[nodemon] watching extensions: ts[39m
+[32m[nodemon] starting `ts-node src/server.ts`[39m
+[2026-09-14T11:10:44.124Z] [INFO] Redis connected
+[2026-09-14T11:10:44.134Z] [INFO] MongoDB connected: mongodb://localhost:27017/online-compiler
+[2026-09-14T11:10:44.140Z] [INFO] Backend server listening on port 5000 [development]
+REQUEST LANGUAGE: mysql
+EXECUTE LANGUAGE: mysql
+EXECUTOR CONFIG: {
+  executor: 'docker',
+  image: 'mysql:8.0',
+  filename: 'main.sql',
+  runCmd: [
+    'sh',
+    '-c',
+    'mysql -h host.docker.internal -P 3306 -u root < main.sql'
+  ]
+}
+[0mPOST /api/compiler/run [32m200[0m 1768.778 ms - 172[0m
+REQUEST LANGUAGE: mysql
+EXECUTE LANGUAGE: mysql
+EXECUTOR CONFIG: {
+  executor: 'docker',
+  image: 'mysql:8.0',
+  filename: 'main.sql',
+  runCmd: [
+    'sh',
+    '-c',
+    'mysql -h host.docker.internal -P 3306 -u root < main.sql'
+  ]
+}
+[0mPOST /api/compiler/run [32m200[0m 884.913 ms - 171[0m
+[32m[nodemon] restarting child process[39m
+[32m[nodemon] starting `ts-node src/server.ts`[39m
+[2026-09-14T11:18:39.417Z] [INFO] Redis connected
+[2026-09-14T11:18:39.441Z] [INFO] MongoDB connected: mongodb://localhost:27017/online-compiler
+[2026-09-14T11:18:39.446Z] [INFO] Backend server listening on port 5000 [development]
+REQUEST LANGUAGE: mysql
+EXECUTE LANGUAGE: mysql
+EXECUTOR CONFIG: {
+  executor: 'docker',
+  image: 'mysql:8.0',
+  filename: 'main.sql',
+  runCmd: [
+    'sh',
+    '-c',
+    'mysql -h host.docker.internal -P 3306 -u root < main.sql'
+  ]
+}
+[0mPOST /api/compiler/run [32m200[0m 866.101 ms - 171[0m
