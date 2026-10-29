@@ -41,7 +41,21 @@
   | "bash"
   | "cobol"
   | "zig"
-  | "powershell";
+  | "powershell"
+  | "pascal"
+  | "tcl"
+  | "coffeescript"
+  | "brainfuck"
+  | "ada"
+  | "commonlisp"
+  | "dlang"
+  | "awk"
+  | "scheme"
+  | "j"
+  | "v"
+  | "raku"
+  | "verilog"
+  | "vhdl";
 
 export interface EditorFile {
   id: string;
@@ -63,4 +77,3 @@ export interface RunResult {
   durationMs: number;
   timedOut: boolean;
 }
-

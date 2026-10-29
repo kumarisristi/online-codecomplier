@@ -399,11 +399,7 @@ exit "\$retval"
     executor: "docker",
     image: "dagui0/gnucobol:latest",
     filename: "main.cob",
-    runCmd: [
-      "sh",
-      "-c",
-      "cobc -x -free -o /tmp/main main.cob && /tmp/main",
-    ],
+    runCmd: ["sh", "-c", "cobc -x -free -o /tmp/main main.cob && /tmp/main"],
   },
   zig: {
     executor: "docker",
@@ -411,12 +407,113 @@ exit "\$retval"
     filename: "main.zig",
     runCmd: ["zig", "run", "main.zig"],
   },
+  pascal: {
+    executor: "docker",
+    image: "oc-pascal:latest",
+    filename: "main.pas",
+    compileCmd: ["fpc", "-O2", "-omain", "main.pas"],
+    runCmd: ["./main"],
+  },
+
+  ada: {
+    executor: "docker",
+    image: "oc-ada:latest",
+    filename: "main.adb",
+    runCmd: ["sh", "-c", "gnatmake -q -O2 -o main main.adb && ./main"],
+  },
+  commonlisp: {
+    executor: "docker",
+    image: "oc-commonlisp:latest",
+    filename: "main.lisp",
+    runCmd: ["sbcl", "--script", "main.lisp"],
+  },
+  dlang: {
+    executor: "docker",
+    image: "oc-dlang:latest",
+    filename: "main.d",
+    runCmd: ["sh", "-c", "gdc -O2 -o main main.d && ./main"],
+  },
+  scheme: {
+    executor: "docker",
+    image: "oc-scheme:latest",
+    filename: "main.scm",
+    runCmd: ["guile", "--no-auto-compile", "main.scm"],
+  },
+  j: {
+    executor: "docker",
+    image: "oc-j:latest",
+    filename: "main.ijs",
+    runCmd: [
+      "/usr/local/lib/python3.12/site-packages/jlang/j/bin/jconsole",
+      "-jscript",
+      "main.ijs",
+    ],
+  },
+  v: {
+    executor: "docker",
+    image: "oc-v:latest",
+    filename: "main.v",
+    runCmd: ["v", "run", "main.v"],
+  },
+  raku: {
+    executor: "docker",
+    image: "oc-raku:latest",
+    filename: "main.raku",
+    runCmd: ["raku", "main.raku"],
+  },
+
+  verilog: {
+    executor: "docker",
+    image: "oc-verilog:latest",
+    filename: "main.v",
+    runCmd: ["bash", "-lc", "iverilog -o main.out main.v && vvp main.out"],
+  },
+
+  vhdl: {
+    executor: "docker",
+    image: "oc-vhdl:latest",
+    filename: "main.vhd",
+    runCmd: [
+      "bash",
+      "-lc",
+      "ghdl -a --std=08 main.vhd && ghdl -e --std=08 main && ghdl -r --std=08 main",
+    ],
+  },
+  
+
+  
+  awk: {
+    executor: "docker",
+    image: "oc-awk:latest",
+    filename: "main.awk",
+    runCmd: ["gawk", "-f", "main.awk"],
+  },
+
+  tcl: {
+    executor: "docker",
+    image: "oc-tcl:latest",
+    filename: "main.tcl",
+    runCmd: ["tclsh", "main.tcl"],
+  },
+  coffeescript: {
+    executor: "docker",
+    image: "oc-coffeescript:latest",
+    filename: "main.coffee",
+    runCmd: ["coffee", "main.coffee"],
+  },
+  brainfuck: {
+    executor: "docker",
+    image: "oc-brainfuck:latest",
+    filename: "main.bf",
+    runCmd: ["node", "/usr/local/bin/brainfuck.js", "main.bf"],
+  },
   powershell: {
     executor: "docker",
     image: "mcr.microsoft.com/powershell:latest",
     filename: "main.ps1",
     runCmd: ["pwsh", "-NoLogo", "-NoProfile", "-File", "main.ps1"],
-  },};
+  },
+};
 
 export function getLanguageConfig(language: string) {
   const config = languageConfigs[language as keyof LanguageConfigMap];

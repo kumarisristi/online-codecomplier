@@ -39,7 +39,22 @@
   | "bash"
   | "cobol"
   | "zig"
-  | "powershell";
+  | "powershell"
+  | "pascal"
+  | "tcl"
+  | "coffeescript"
+  | "brainfuck"
+  | "ada"
+  | "commonlisp"
+  | "dlang"
+  | "awk"
+  | "scheme"
+  | "j"
+  | "v"
+  | "raku"
+  | "verilog"
+  | "vhdl"
+  | "haxe";
 
 export interface RunRequestBody {
   language: SupportedLanguage;
@@ -54,4 +69,3 @@ export interface RunResult {
   durationMs: number;
   timedOut: boolean;
 }
-

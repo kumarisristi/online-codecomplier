@@ -447,7 +447,167 @@ pub fn main() void {
     monacoId: "powershell",
     boilerplate: `Write-Output "Hello from PowerShell!"
 `,
-  },];
+  },
+  {
+    value: "pascal",
+    label: "Pascal",
+    monacoId: "pascal",
+    boilerplate: "program Main;\nbegin\n  writeln('Hello, World!');\nend.\n",
+  },
+  {
+    value: "tcl",
+    label: "Tcl",
+    monacoId: "plaintext",
+    boilerplate: 'puts "Hello, World!"\n',
+  },
+  {
+    value: "coffeescript",
+    label: "CoffeeScript",
+    monacoId: "javascript",
+    boilerplate: 'console.log "Hello, World!"\n',
+  },
+  {
+    value: "brainfuck",
+    label: "Brainfuck",
+    monacoId: "plaintext",
+    boilerplate:
+      "++++++++++[>+++++++>++++++++++>+++>+<<<<-]>++.>+.+++++++..+++.>++.<<+++++++++++++++.>.+++.------.--------.>+.>.",
+  },
+  {
+    value: "ada",
+    label: "Ada",
+    monacoId: "pascal",
+    boilerplate: `with Ada.Text_IO; use Ada.Text_IO;
+
+procedure Main is
+begin
+   Put_Line("Hello from Ada!");
+end Main;
+`,
+  },
+  {
+    value: "commonlisp",
+    label: "Common Lisp",
+    monacoId: "lisp",
+    boilerplate: `(format t "Hello from Common Lisp!~%")
+`,
+  },
+
+  {
+    value: "dlang",
+    label: "D",
+    monacoId: "d",
+    boilerplate: `import std.stdio;
+
+void main()
+{
+    writeln("Hello from D!");
+}
+`,
+  },
+
+  {
+    value: "scheme",
+    label: "Scheme",
+    monacoId: "scheme",
+    boilerplate: `(display "Hello from Scheme!")
+(newline)
+
+(define a 25)
+(define b 17)
+
+(display "Sum = ")
+(display (+ a b))
+(newline)
+
+(display "Multiplication = ")
+(display (* a b))
+(newline)
+`,
+  },
+
+  {
+    value: "j",
+    label: "J",
+    monacoId: "plaintext",
+    boilerplate: `smoutput 'Hello from J!'
+smoutput 2 + 3
+`,
+  },
+
+  {
+    value: "v",
+    label: "V",
+    monacoId: "plaintext",
+    boilerplate: `fn main() {
+    println('Hello from V!')
+    println('Addition: ${10 + 20}')
+}
+`,
+  },
+  {
+    value: "raku",
+    label: "Raku",
+    monacoId: "plaintext",
+    boilerplate: `say "Hello from Raku!";
+my $a = 10;
+my $b = 20;
+say "Addition: " ~ ($a + $b);
+`,
+  },
+  {
+    value: "verilog",
+    label: "Verilog",
+    monacoId: "verilog",
+    boilerplate: `module main;
+    reg a;
+    reg b;
+    wire result;
+
+    assign result = a & b;
+
+    initial begin
+        a = 1;
+        b = 1;
+        #10;
+        $display("AND result: %b", result);
+        $finish;
+    end
+endmodule
+`,
+  },
+
+  {
+    value: "vhdl",
+    label: "VHDL",
+    monacoId: "vhdl",
+    boilerplate: `library ieee;
+use ieee.std_logic_1164.all;
+
+entity main is
+end entity;
+
+architecture test of main is
+begin
+    process
+    begin
+        report "Hello from VHDL!";
+        std.env.stop;
+        wait;
+    end process;
+end architecture;
+`,
+  },
+  {
+    value: "awk",
+    label: "AWK",
+    monacoId: "plaintext",
+    boilerplate: `BEGIN {
+    print "Hello from AWK!"
+}
+`,
+  },
+];
 
 export function getLanguageOption(value: string): LanguageOption {
   const found = languageOptions.find((opt) => opt.value === value);
@@ -952,4 +1112,120 @@ export const homeTiles: HomeTile[] = [
     bg: "#e6efff",
     fg: "#2456a6",
     short: "PS",
-  },];
+  },
+  {
+    name: "Pascal",
+    slug: "pascal",
+    category: "programming",
+    bg: "#e9f3ff",
+    fg: "#2456a6",
+    short: "Pa",
+  },
+  {
+    name: "Tcl",
+    slug: "tcl",
+    category: "programming",
+    bg: "#f1eaff",
+    fg: "#6941a5",
+    short: "Tcl",
+  },
+  {
+    name: "CoffeeScript",
+    slug: "coffeescript",
+    category: "programming",
+    bg: "#fff3df",
+    fg: "#9a6418",
+    short: "CS",
+  },
+  {
+    name: "Brainfuck",
+    slug: "brainfuck",
+    category: "programming",
+    bg: "#e8f5ec",
+    fg: "#267344",
+    short: "BF",
+  },
+  {
+    name: "Ada",
+    slug: "ada",
+    category: "programming",
+    bg: "#e8eef9",
+    fg: "#254a87",
+    short: "Ad",
+  },
+  {
+    name: "Common Lisp",
+    slug: "commonlisp",
+    category: "programming",
+    bg: "#e8e4f5",
+    fg: "#514080",
+    short: "CL",
+  },
+  {
+    name: "D",
+    slug: "dlang",
+    category: "programming",
+    bg: "#f8e8e8",
+    fg: "#9b2525",
+    short: "D",
+  },
+
+  {
+    name: "AWK",
+    slug: "awk",
+    category: "programming",
+    bg: "#e8f0fa",
+    fg: "#24558a",
+    short: "AWK",
+  },
+
+  {
+    name: "Scheme",
+    slug: "scheme",
+    category: "programming",
+    bg: "#e8f4e8",
+    fg: "#286b35",
+    short: "SCM",
+  },
+  {
+    name: "J",
+    slug: "j",
+    short: "J",
+    category: "programming",
+    bg: "#e8f4e8",
+    fg: "#286b35",
+  },
+  {
+    name: "V",
+    slug: "v",
+    short: "V",
+    category: "programming",
+    bg: "#e8f4e8",
+    fg: "#286b35",
+  },
+  {
+    name: "Raku",
+    slug: "raku",
+    short: "Raku",
+    category: "programming",
+    bg: "#e8f4e8",
+    fg: "#286b35",
+  },
+
+  {
+    name: "Verilog",
+    slug: "verilog",
+    short: "V",
+    category: "programming",
+    bg: "#e8f4e8",
+    fg: "#286b35",
+  },
+  {
+    name: "VHDL",
+    slug: "vhdl",
+    short: "VHDL",
+    category: "programming",
+    bg: "#e8f4e8",
+    fg: "#286b35",
+  },
+];

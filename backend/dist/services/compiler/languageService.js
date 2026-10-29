@@ -389,7 +389,31 @@ exit "\$retval"
         filename: "main.zig",
         runCmd: ["zig", "run", "main.zig"],
     },
-    powershell: {
+    pascal: {
+        executor: "docker",
+        image: "oc-pascal:latest",
+        filename: "main.pas",
+        compileCmd: ["fpc", "-O2", "-omain", "main.pas"],
+        runCmd: ["./main"],
+    },
+    tcl: {
+        executor: "docker",
+        image: "oc-tcl:latest",
+        filename: "main.tcl",
+        runCmd: ["tclsh", "main.tcl"],
+    },
+    coffeescript: {
+        executor: "docker",
+        image: "oc-coffeescript:latest",
+        filename: "main.coffee",
+        runCmd: ["coffee", "main.coffee"],
+    },
+    brainfuck: {
+        executor: "docker",
+        image: "oc-brainfuck:latest",
+        filename: "main.bf",
+        runCmd: ["node", "/usr/local/bin/brainfuck.js", "main.bf"],
+    }, powershell: {
         executor: "docker",
         image: "mcr.microsoft.com/powershell:latest",
         filename: "main.ps1",
